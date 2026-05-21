@@ -1,4 +1,4 @@
-# testing-pytest-framework
+# Pytest Web & API Testing Framework
 
 [![Python CI Tests](https://github.com/yashwant-das/testing-pytest-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/yashwant-das/testing-pytest-framework/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
