@@ -1,5 +1,5 @@
 [project]
-name = "pytest-web-api-testing-framework"
+name = "testing-pytest-framework"
 version = "1.0.0"
 description = "A comprehensive pytest-based testing framework for web UI and API testing"
 authors = [
