@@ -57,9 +57,12 @@ junit/
 # Local Test Reports (keep the directories in Git if you want, but not the content)
 reports/*
 !reports/.gitkeep
-!reports/allure-results/environment.properties # Allow this specific Allure file if you commit it
-!reports/allure-results/.gitkeep # Allow keeping allure-results dir even if empty
-!reports/allure-report/.gitkeep  # Allow keeping allure-report dir even if empty (though it's usually generated)
+# Allow this specific Allure file if you commit it
+!reports/allure-results/environment.properties
+# Allow keeping allure-results dir even if empty
+!reports/allure-results/.gitkeep
+# Allow keeping allure-report dir even if empty (though it's usually generated)
+!reports/allure-report/.gitkeep
 
 # Allure generated report (usually you generate this locally or in CI, not commit the full report)
 # If you use GitHub Pages to host the report, the gh-pages branch will handle it.
@@ -107,7 +110,8 @@ __pypackages__/
 # *.sage.py
 
 # Virtual Environments
-.env # Main environment file with secrets
+# Main environment file with secrets
+.env
 .venv
 env/
 venv/
@@ -134,14 +138,20 @@ dmypy.json
 # .pyre/
 
 # IDE specific files
-.idea/            # IntelliJ IDEA
-.vscode/          # Visual Studio Code (settings specific to user's workspace)
+# IntelliJ IDEA
+.idea/
+# Visual Studio Code (settings specific to user's workspace)
+.vscode/
 *.sublime-project
 *.sublime-workspace
-nbproject/        # NetBeans
-*.DS_Store        # macOS
-Thumbs.db         # Windows
-Desktop.ini       # Windows
+# NetBeans
+nbproject/
+# macOS
+*.DS_Store
+# Windows
+Thumbs.db
+# Windows
+Desktop.ini
 
 # Operating System files
 .AppleDouble
