@@ -1,6 +1,6 @@
 # Pytest Web & API Testing Framework
 
-[![Python CI Tests](https://github.com/yashwant-das/testing-pytest-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/yashwant-das/testing-pytest-framework/actions/workflows/ci.yml)
+[![Python CI Tests](https://github.com/yashwant-das/qa-py-selenium-requests/actions/workflows/ci.yml/badge.svg)](https://github.com/yashwant-das/qa-py-selenium-requests/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.md)
 
@@ -31,8 +31,8 @@ A robust and scalable Python framework for Web (Selenium) and API (Requests) tes
 1. **Clone the Repository:**
 
   ```bash
-git clone https://github.com/yashwant-das/testing-pytest-framework.git
-cd testing-pytest-framework
+git clone https://github.com/yashwant-das/qa-py-selenium-requests.git
+cd qa-py-selenium-requests
   ```
 
 2. **Create and Activate a Virtual Environment (Recommended):**
@@ -164,7 +164,7 @@ This framework uses Pytest as its test runner.
 
 The test results are automatically published to GitHub Pages after each CI/CD run. You can view them at:
 
-**[Live Test Reports](https://yashwant-das.github.io/testing-pytest-framework/)**
+**[Live Test Reports](https://yashwant-das.github.io/qa-py-selenium-requests/)**
 
 The automated CI/CD pipeline:
 
@@ -178,7 +178,7 @@ The automated CI/CD pipeline:
 The framework is organized for separation of concerns and maintainability.
 
 ```
-testing-pytest-framework/
+qa-py-selenium-requests/
 ├── .github/
 │   └── workflows/
 │       └── ci.yml

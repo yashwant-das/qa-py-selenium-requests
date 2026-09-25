@@ -1,5 +1,5 @@
 [project]
-name = "testing-pytest-framework"
+name = "qa-py-selenium-requests"
 version = "1.0.0"
 description = "A comprehensive pytest-based testing framework for web UI and API testing"
 authors = [
