@@ -1,0 +1,5 @@
+INFO     api.test_booking_api:test_booking_api.py:121 Starting test_update_booking
+INFO     src.api_clients.booking_service:booking_service.py:33 Updating booking ID 4268
+INFO     src.base.api_base:api_base.py:100 API Request: PUT https://restful-booker.herokuapp.com/booking/4268
+INFO     src.base.api_base:api_base.py:121 API Response: 200 for PUT https://restful-booker.herokuapp.com/booking/4268
+INFO     api.test_booking_api:test_booking_api.py:145 test_update_booking for ID 4268 successful.

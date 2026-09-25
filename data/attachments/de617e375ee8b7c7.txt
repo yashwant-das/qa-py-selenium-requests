@@ -1,0 +1,7 @@
+INFO     conftest:conftest.py:108 Allure environment properties written to reports/allure-results/environment.properties
+INFO     api.test_booking_api:test_booking_api.py:46 Authenticating API client for Booking API tests module...
+INFO     api.test_booking_api:test_booking_api.py:56 Starting test_health_check (ping)
+INFO     src.api_clients.booking_service:booking_service.py:54 Performing health check (ping)
+INFO     src.base.api_base:api_base.py:100 API Request: GET https://restful-booker.herokuapp.com/ping
+INFO     src.base.api_base:api_base.py:121 API Response: 201 for GET https://restful-booker.herokuapp.com/ping
+INFO     api.test_booking_api:test_booking_api.py:62 test_health_check successful.

@@ -1,0 +1,5 @@
+INFO     api.test_booking_api:test_booking_api.py:66 Starting test_create_booking
+INFO     src.api_clients.booking_service:booking_service.py:20 Creating booking with data: Melissa
+INFO     src.base.api_base:api_base.py:100 API Request: POST https://restful-booker.herokuapp.com/booking
+INFO     src.base.api_base:api_base.py:121 API Response: 200 for POST https://restful-booker.herokuapp.com/booking
+INFO     api.test_booking_api:test_booking_api.py:93 test_create_booking successful. Booking ID: 4268

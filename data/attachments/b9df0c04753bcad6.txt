@@ -1,0 +1,8 @@
+INFO     api.test_booking_api:test_booking_api.py:153 Starting test_delete_created_booking
+INFO     src.api_clients.booking_service:booking_service.py:47 Deleting booking ID: 4268
+INFO     src.base.api_base:api_base.py:100 API Request: DELETE https://restful-booker.herokuapp.com/booking/4268
+INFO     src.base.api_base:api_base.py:121 API Response: 201 for DELETE https://restful-booker.herokuapp.com/booking/4268
+INFO     src.api_clients.booking_service:booking_service.py:29 Requesting details for booking ID: 4268
+INFO     src.base.api_base:api_base.py:100 API Request: GET https://restful-booker.herokuapp.com/booking/4268
+INFO     src.base.api_base:api_base.py:121 API Response: 404 for GET https://restful-booker.herokuapp.com/booking/4268
+INFO     api.test_booking_api:test_booking_api.py:168 test_delete_created_booking for ID 4268 successful.

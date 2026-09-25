@@ -1,0 +1,13 @@
+INFO     conftest:conftest.py:64 Initializing WebDriver: chrome, Headless: True
+INFO     src.base.web_base:web_base.py:65 Navigating to URL: https://www.saucedemo.com/
+INFO     web.test_login_scenarios:test_login_scenarios.py:47 Starting test_invalid_login_scenarios for user: invalid_user
+INFO     src.pages.login_page:login_page.py:33 Attempting login for user: invalid_user
+INFO     src.pages.login_page:login_page.py:21 Entering username: invalid_user
+INFO     src.base.web_base:web_base.py:47 Typing 'invalid_user' into element with locator: ('id', 'user-name')
+INFO     src.pages.login_page:login_page.py:25 Entering password: ***
+INFO     src.base.web_base:web_base.py:47 Typing 'secret_sauce' into element with locator: ('id', 'password')
+INFO     src.pages.login_page:login_page.py:29 Clicking login button
+INFO     src.base.web_base:web_base.py:38 Clicking on element with locator: ('id', 'login-button')
+INFO     src.pages.login_page:login_page.py:41 Retrieved error message: Epic sadface: Username and password do not match any user in this service
+INFO     web.test_login_scenarios:test_login_scenarios.py:61 test_invalid_login_scenarios for 'invalid_user' completed. Error: Epic sadface: Username and password do not match any user in this service
+INFO     conftest:conftest.py:69 Quitting WebDriver.

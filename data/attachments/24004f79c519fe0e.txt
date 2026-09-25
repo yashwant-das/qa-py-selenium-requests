@@ -1,0 +1,5 @@
+INFO     api.test_booking_api:test_booking_api.py:97 Starting test_get_booking_details
+INFO     src.api_clients.booking_service:booking_service.py:29 Requesting details for booking ID: 4268
+INFO     src.base.api_base:api_base.py:100 API Request: GET https://restful-booker.herokuapp.com/booking/4268
+INFO     src.base.api_base:api_base.py:121 API Response: 200 for GET https://restful-booker.herokuapp.com/booking/4268
+INFO     api.test_booking_api:test_booking_api.py:118 test_get_booking_details for ID 4268 successful.
