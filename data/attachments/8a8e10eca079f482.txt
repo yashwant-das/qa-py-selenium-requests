@@ -1,2 +1,0 @@
-2026-10-21 16:10:48,514 - src.base.api_base - INFO - Attempting API authentication to https://example.invalid/auth (api_base.py:35)
-2026-10-21 16:10:48,515 - src.base.api_base - ERROR - API Authentication failed: response did not contain a valid token. (api_base.py:45)
