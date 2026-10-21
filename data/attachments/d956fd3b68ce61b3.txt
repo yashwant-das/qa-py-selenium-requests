@@ -1,0 +1,6 @@
+2026-10-21 16:33:41,705 - src.api_clients.booking_service - INFO - Creating booking with data: Albert (booking_service.py:20)
+2026-10-21 16:33:41,705 - src.base.api_base - INFO - API Request: POST https://restful-booker.herokuapp.com/booking (api_base.py:80)
+2026-10-21 16:33:41,763 - src.base.api_base - INFO - API Response: 200 for POST https://restful-booker.herokuapp.com/booking (api_base.py:92)
+2026-10-21 16:33:41,768 - src.api_clients.booking_service - INFO - Deleting booking ID: 1377 (booking_service.py:43)
+2026-10-21 16:33:41,769 - src.base.api_base - INFO - API Request: DELETE https://restful-booker.herokuapp.com/booking/1377 (api_base.py:80)
+2026-10-21 16:33:41,826 - src.base.api_base - INFO - API Response: 201 for DELETE https://restful-booker.herokuapp.com/booking/1377 (api_base.py:92)

@@ -1,0 +1,4 @@
+2026-10-21 16:33:41,443 - conftest - INFO - Allure environment properties written to reports/allure-results/environment.properties (conftest.py:106)
+2026-10-21 16:33:41,446 - src.api_clients.booking_service - INFO - Performing health check (ping) (booking_service.py:48)
+2026-10-21 16:33:41,446 - src.base.api_base - INFO - API Request: GET https://restful-booker.herokuapp.com/ping (api_base.py:80)
+2026-10-21 16:33:41,641 - src.base.api_base - INFO - API Response: 201 for GET https://restful-booker.herokuapp.com/ping (api_base.py:92)

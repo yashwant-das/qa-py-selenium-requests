@@ -1,0 +1,2 @@
+2026-10-21 16:33:42,826 - project_fixtures - INFO - Initializing WebDriver: chrome, Headless: False (conftest.py:59)
+2026-10-21 16:33:42,827 - project_fixtures - INFO - Quitting WebDriver. (conftest.py:65)

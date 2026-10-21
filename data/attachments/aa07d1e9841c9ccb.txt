@@ -1,0 +1,3 @@
+2026-10-21 16:33:42,807 - src.base.api_base - WARNING - Endpoint /booking/1 requires auth, but no token. Attempting to authenticate... (api_base.py:63)
+2026-10-21 16:33:42,807 - src.base.api_base - INFO - Attempting API authentication to https://example.invalid/auth (api_base.py:35)
+2026-10-21 16:33:42,808 - src.base.api_base - ERROR - API Authentication failed: response did not contain a valid token. (api_base.py:45)
