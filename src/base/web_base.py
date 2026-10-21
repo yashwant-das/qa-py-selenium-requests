@@ -44,7 +44,7 @@ class WebBase:
             raise TimeoutException(f"Element not clickable: {locator}")
 
     def _type(self, locator: tuple, text: str, timeout: int = None):
-        logger.info(f"Typing '{text}' into element with locator: {locator}")
+        logger.info(f"Typing into element with locator: {locator}")
         element = self._find_element(locator, timeout)
         element.clear()
         element.send_keys(text)
@@ -75,7 +75,8 @@ class WebBase:
             current_wait.until(EC.url_contains(text_fragment))
         except TimeoutException:
             logger.error(
-                f"URL did not contain '{text_fragment}' within timeout. Current URL: {self.driver.current_url}"
+                f"URL did not contain '{text_fragment}' within timeout. "
+                f"Current URL: {self.driver.current_url}"
             )
             raise TimeoutException(
                 f"URL did not contain '{text_fragment}'. Current URL: {self.driver.current_url}"

@@ -1,61 +1,60 @@
 [project]
 name = "qa-py-selenium-requests"
 version = "1.0.0"
-description = "A comprehensive pytest-based testing framework for web UI and API testing"
-authors = [
-    {name = "yashwant-das", email = "your-email@example.com"}
-]
-license = {text = "MIT"}
+description = "A pytest-based testing framework for web UI and API testing"
+authors = [{name = "yashwant-das"}]
+license = "MIT"
+license-files = ["LICENSE"]
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
+dependencies = [
+    "selenium==4.51.0",
+    "requests==2.34.2",
+    "python-dotenv==1.2.4",
+    "Faker==40.43.0",
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.15",
     "Topic :: Software Development :: Testing",
 ]
 
 [build-system]
-requires = ["setuptools>=45", "wheel"]
+requires = ["setuptools>=77.0.3", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.black]
-line-length = 110  # Or your preferred line length (Black defaults to 88)
-# target-version = ['py39', 'py310', 'py311', 'py312', 'py313'] # Specify target Python versions if needed
-
-[tool.isort]
-profile = "black"   # Ensures compatibility with Black
-line_length = 110   # Match Black's line length
-multi_line_output = 3 # For multi-line imports: 3 = Vertical Hanging Indent
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
-ensure_newline_before_comments = true
-
-[tool.flake8]
-max-line-length = 110  # Match Black's line length
-extend-ignore = [
-    "E203", # Whitespace before ':' (often conflicts with Black)
-    "W503", # Line break before binary operator (Black prefers after)
-    # "E501", # Line too long (handled by Black, but good to have for manual checks)
+[dependency-groups]
+test = [
+    "pytest==9.1.1",
+    "pytest-html==4.2.0",
+    "pytest-xdist==3.8.0",
+    "allure-pytest==2.16.2",
+    "jsonschema==4.26.0",
 ]
-exclude = [
-    ".git",
-    "__pycache__",
-    "docs",
-    "build",
-    "dist",
-    ".venv",
-    "venv",
-    "env",
-    "reports", # Exclude generated reports
-    "allure-results",
-    "allure-report",
+lint = ["ruff==0.17.1"]
+dev = [
+    {include-group = "test"},
+    {include-group = "lint"},
+    "pre-commit==4.7.0",
 ]
-# per-file-ignores = [ # Example: if you have specific files to ignore certain errors for
-#     "src/legacy_code.py:F401,E722",
-# ]
+
+[tool.uv]
+required-version = ">=0.13.4"
+
+[tool.setuptools.packages.find]
+include = ["src*"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+force-exclude = true
+extend-exclude = ["env", "reports", "allure-results", "allure-report", "gh-pages"]
+
+[tool.ruff.lint]
+# Preserve the existing Flake8 checks and isort import sorting.
+select = ["E", "F", "I", "W"]
+ignore = ["E203"]

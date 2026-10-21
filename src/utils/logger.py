@@ -10,11 +10,12 @@ def get_logger(name: str, level: str = LOG_LEVEL) -> logging.Logger:
 
     # Check if handlers are already added to avoid duplication if called multiple times
     if not logger.handlers:
-        logger.setLevel(getattr(logging, level, logging.INFO))  # Default to INFO if invalid level
+        resolved_level = getattr(logging, level.upper(), logging.INFO)
+        logger.setLevel(resolved_level)
 
         # Console Handler
         ch = logging.StreamHandler(sys.stdout)
-        ch.setLevel(level)
+        ch.setLevel(resolved_level)
 
         # File Handler (optional, useful for debugging CI or long runs)
         # log_file_path = "test_run.log"

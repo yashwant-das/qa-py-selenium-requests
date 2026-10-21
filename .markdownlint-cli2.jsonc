@@ -1,0 +1,8 @@
+{
+  "globs": ["**/*.md"],
+  "ignores": ["venv/**", ".venv/**", "reports/**", "allure-report/**", "gh-pages/**", "node_modules/**"],
+  "config": {
+    "default": true,
+    "MD013": {"line_length": 120, "tables": false}
+  }
+}

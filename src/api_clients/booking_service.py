@@ -31,22 +31,16 @@ class BookingService(APIBase):
 
     def update_booking(self, booking_id: int, booking_data: dict) -> Response:
         logger.info(f"Updating booking ID {booking_id}")
-        if not self.auth_token:  # Ensure auth has happened
-            self.authenticate()
         # PUT requires authentication (token)
         return self.put(f"{self.booking_endpoint}/{booking_id}", json=booking_data, requires_auth=True)
 
     def partial_update_booking(self, booking_id: int, booking_data: dict) -> Response:
         logger.info(f"Partially updating booking ID {booking_id}")
-        if not self.auth_token:
-            self.authenticate()
         # PATCH requires authentication (token)
         return self.patch(f"{self.booking_endpoint}/{booking_id}", json=booking_data, requires_auth=True)
 
     def delete_booking(self, booking_id: int) -> Response:
         logger.info(f"Deleting booking ID: {booking_id}")
-        if not self.auth_token:
-            self.authenticate()
         # DELETE requires authentication (token)
         return self.delete(f"{self.booking_endpoint}/{booking_id}", requires_auth=True)
 

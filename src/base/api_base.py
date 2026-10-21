@@ -20,6 +20,7 @@ class APIBase:
 
     def authenticate(self):
         """Authenticates with Restful-booker and stores the token."""
+        self.auth_token = None
         auth_endpoint = self.config.get("api_auth_endpoint")
         api_creds = self.config.get("credentials", {}).get("api_user", {})
         username = api_creds.get("username")
@@ -36,15 +37,13 @@ class APIBase:
             response = self.session.post(auth_url, json=payload, timeout=self.default_timeout)
             response.raise_for_status()  # Will raise an HTTPError for bad responses
             token_data = response.json()
-            self.auth_token = token_data.get("token")
-            if self.auth_token:
+            token = token_data.get("token") if isinstance(token_data, dict) else None
+            if isinstance(token, str) and token.strip():
+                self.auth_token = token
                 logger.info("API Authentication successful. Token received.")
-                # For Restful-booker, token is typically sent as a cookie
-                # self.session.cookies.set("token", self.auth_token) # Requests session handles cookies
                 return True
-            else:
-                logger.error(f"API Authentication failed. Token not found in response: {response.text}")
-                return False
+            logger.error("API Authentication failed: response did not contain a valid token.")
+            return False
         except requests.exceptions.RequestException as e:
             logger.error(f"API Authentication request failed: {e}")
             return False
@@ -63,11 +62,9 @@ class APIBase:
         if requires_auth and not self.auth_token:
             logger.warning(f"Endpoint {endpoint} requires auth, but no token. Attempting to authenticate...")
             if not self.authenticate():
-                logger.error("Authentication failed. Cannot proceed with authenticated request.")
-                # Optionally raise an exception here or let the request fail
-                # For now, we'll let it proceed and likely fail if token is truly needed by endpoint
-                # raise Exception("Authentication required and failed.")
-                pass  # Let the request proceed and likely fail at the server if token is missing
+                raise requests.exceptions.RequestException(
+                    "Authentication failed. Cannot proceed with authenticated request."
+                )
 
         url = f"{self.base_url}{endpoint}"
         request_headers = self.session.headers.copy()  # Start with session headers
@@ -75,38 +72,12 @@ class APIBase:
         if headers:
             request_headers.update(headers)
 
-        # For Restful-booker, if a token exists, it's often sent via a Cookie header for PUT/DELETE
-        # The requests.Session should handle cookies automatically if set via response.
-        # However, Restful-booker specifically looks for 'Cookie: token=...' or an Auth header.
-        # Let's ensure the token is in headers if needed explicitly by Restful-booker style
-        # for PUT/PATCH/DELETE.
-        # For many APIs, a Bearer token is more common:
-        # request_headers["Authorization"] = f"Bearer {self.auth_token}"
-        if requires_auth and self.auth_token:
-            # Restful-booker PUT/PATCH/DELETE can use Basic Auth OR Token in Cookie or Auth header
-            # Using the token in an "Authorization: Bearer <token>" is a common pattern,
-            # but Restful-booker docs also show "Cookie: token=<value>"
-            # For simplicity, let's try adding it as a direct cookie header for PUT/DELETE
-            # Alternatively, some endpoints might expect Basic Auth with the token as username & no password
-            if method.upper() in ["PUT", "PATCH", "DELETE"]:
-                # Option 1: Cookie header (if session doesn't manage it as expected by server)
-                if "Cookie" not in request_headers and "token" not in self.session.cookies:
-                    request_headers["Cookie"] = f"token={self.auth_token}"
-                # Option 2: Authorization Bearer Token (more standard for many APIs)
-                # request_headers["Authorization"] = f"Bearer {self.auth_token}"
-                # Option 3: Basic Auth with token as username (Restful-booker also supports this)
-                # kwargs['auth'] = (self.auth_token, '') # username=token, password=''
+        # Restful-booker returns the token in JSON, rather than setting a cookie.
+        if requires_auth and self.auth_token and method.upper() in {"PUT", "PATCH", "DELETE"}:
+            if "Cookie" not in request_headers and "token" not in self.session.cookies:
+                request_headers["Cookie"] = f"token={self.auth_token}"
 
         logger.info(f"API Request: {method.upper()} {url}")
-        if params:
-            logger.debug(f"Params: {params}")
-        if data:
-            logger.debug(f"Data (form-encoded): {data}")
-        if json:
-            logger.debug(f"JSON Payload: {json}")
-        if request_headers:
-            logger.debug(f"Effective Headers: {request_headers}")
-
         try:
             response = self.session.request(
                 method,
@@ -119,8 +90,6 @@ class APIBase:
                 **kwargs,
             )
             logger.info(f"API Response: {response.status_code} for {method.upper()} {url}")
-            response_text_preview = response.text[:500] + "..." if len(response.text) > 500 else response.text
-            logger.debug(f"Response Body Preview: {response_text_preview}")
             return response
         except requests.exceptions.RequestException as e:
             logger.error(f"API Request Exception for {method.upper()} {url}: {e}")

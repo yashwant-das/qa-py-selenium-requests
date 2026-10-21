@@ -15,7 +15,7 @@ class LoginPage(WebBase):
 
     def __init__(self, driver, config):
         super().__init__(driver, config)
-        # Navigation to login page will be handled by the test fixture or test itself using config['login_path']
+        # Tests navigate to the login page using config["login_path"].
 
     def enter_username(self, username: str):
         logger.info(f"Entering username: {username}")  # SauceDemo usernames aren't super sensitive

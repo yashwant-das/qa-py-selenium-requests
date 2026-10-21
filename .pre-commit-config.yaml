@@ -1,24 +1,25 @@
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0 # Use the latest stable version
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
     hooks:
-    -   id: trailing-whitespace
-    -   id: end-of-file-fixer
-    -   id: check-yaml
-    -   id: check-added-large-files
--   repo: https://github.com/psf/black
-    rev: 25.1.0 # Use the latest stable version of Black
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+  - repo: local
     hooks:
-    -   id: black
-        args: [--line-length=110] # Or let it use pyproject.toml
--   repo: https://github.com/pycqa/isort
-    rev: 6.0.1 # Use the latest stable version
+      - id: ruff-check
+        name: ruff check
+        entry: uv run --locked ruff check --fix
+        language: system
+        types_or: [python, pyi]
+      - id: ruff-format
+        name: ruff format
+        entry: uv run --locked ruff format
+        language: system
+        types_or: [python, pyi]
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.24.0
     hooks:
-    -   id: isort
-        args: ["--profile", "black", "--line-length", "110"] # Or let it use pyproject.toml
--   repo: https://github.com/pycqa/flake8
-    rev: 7.3.0 # Use the latest stable version
-    hooks:
-    -   id: flake8
-        # Configuration is read from pyproject.toml
-        # additional_dependencies: [flake8-bugbear] # Example of adding flake8 plugins
+      - id: markdownlint-cli2
