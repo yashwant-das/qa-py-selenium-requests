@@ -60,11 +60,11 @@ def test_failed_reauthentication_discards_old_token(client, monkeypatch):
     assert client.auth_token is None
 
 
-@pytest.mark.parametrize("body", [b"[]", b"null", b'{"token":123}', b'{"token":""}'])
+@pytest.mark.parametrize("body", ["[]", "null", '{"token":123}', '{"token":""}'])
 def test_malformed_authentication_response_is_rejected(client, monkeypatch, body):
     response = requests.Response()
     response.status_code = 200
-    response._content = body
+    response._content = body.encode("utf-8")
     monkeypatch.setattr(client.session, "post", lambda *args, **kwargs: response)
     assert client.authenticate() is False
     assert client.auth_token is None
