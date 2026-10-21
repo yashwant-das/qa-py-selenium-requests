@@ -36,12 +36,12 @@ supports the current test and development toolchain. Selenium Manager handles dr
 2. Install the project and development tools from the lockfile:
 
    ```bash
-   uv sync --locked
+   uv sync
    ```
 
    uv creates `.venv` automatically. You do not need to activate it; use `uv run` for project commands.
    The default `dev` group includes tests, Ruff, and pre-commit. To choose a Python version explicitly,
-   use `uv sync --locked --python 3.15`.
+   use `uv sync --python 3.15`.
 
 3. Create the local environment file.
 
@@ -74,34 +74,33 @@ supports the current test and development toolchain. Selenium Manager handles dr
 
 ## Run Tests
 
-Run commands from the repository root. `uv run --locked` uses the project environment
-and refuses to change an outdated lockfile.
+Run commands from the repository root. `uv run` syncs the project environment before running the command.
 
 ```bash
 # All tests, including the public API and browser tests
-uv run --locked pytest
+uv run pytest
 
 # Offline framework regression tests
-uv run --locked pytest -m unit
+uv run pytest -m unit
 
 # API tests
-uv run --locked pytest -m api
+uv run pytest -m api
 
 # Browser tests
-uv run --locked pytest -m web
+uv run pytest -m web
 
 # Smoke tests, or just API smoke tests
-uv run --locked pytest -m smoke
-uv run --locked pytest -m "api and smoke"
+uv run pytest -m smoke
+uv run pytest -m "api and smoke"
 
 # API regression tests
-uv run --locked pytest -m regression
+uv run pytest -m regression
 
 # A single test, with verbose output
-uv run --locked pytest tests/api/test_booking_api.py::TestBookingAPI::test_update_booking -v
+uv run pytest tests/api/test_booking_api.py::TestBookingAPI::test_update_booking -v
 
 # Parallel execution (pytest-xdist is included)
-uv run --locked pytest -n 4
+uv run pytest -n 4
 ```
 
 API tests create their own bookings and clean them up in fixture teardown, so tests can run individually
@@ -118,14 +117,14 @@ Set `TEST_ENV=ci` to use headless Chrome locally.
 On macOS or Linux:
 
 ```bash
-TEST_ENV=ci uv run --locked pytest
+TEST_ENV=ci uv run pytest
 ```
 
 On Windows PowerShell:
 
 ```powershell
 $env:TEST_ENV = "ci"
-uv run --locked pytest
+uv run pytest
 ```
 
 ## Configuration
@@ -151,7 +150,7 @@ Use `LOG_LEVEL` to change framework logging; the default is `INFO`.
 ### HTML Report
 
 ```bash
-uv run --locked pytest --html=reports/pytest_report.html --self-contained-html
+uv run pytest --html=reports/pytest_report.html --self-contained-html
 ```
 
 Open `reports/pytest_report.html` in your browser.
@@ -163,7 +162,7 @@ With Node.js and Java installed, one option is:
 
 ```bash
 npm install -g allure-commandline@2
-uv run --locked pytest --alluredir=reports/allure-results --clean-alluredir
+uv run pytest --alluredir=reports/allure-results --clean-alluredir
 allure generate reports/allure-results -o reports/allure-report --clean
 allure open reports/allure-report
 ```
@@ -224,18 +223,18 @@ Ruff handles Python linting, import sorting, and formatting using `pyproject.tom
 Markdownlint reads `.markdownlint-cli2.jsonc`.
 
 ```bash
-uv run --locked ruff check .
-uv run --locked ruff format --check .
+uv run ruff check .
+uv run ruff format --check .
 npx --yes markdownlint-cli2@0.24.0
 ```
 
-To apply safe lint fixes and sort imports, run `uv run --locked ruff check --fix .`.
-To format Python code, run `uv run --locked ruff format .`.
+To apply safe lint fixes and sort imports, run `uv run ruff check --fix .`.
+To format Python code, run `uv run ruff format .`.
 Install the optional Git hooks after installing the dependencies:
 
 ```bash
-uv run --locked pre-commit install
-uv run --locked pre-commit run --all-files
+uv run pre-commit install
+uv run pre-commit run --all-files
 ```
 
 The hooks check whitespace, file endings, YAML, TOML, Python style, and Markdown.
@@ -245,7 +244,12 @@ Other hook revisions are pinned in `.pre-commit-config.yaml`.
 ## Dependency Management
 
 `pyproject.toml` separates framework dependencies from the `test`, `lint`, and `dev` groups.
-The `dev` group includes both `test` and `lint`. CI installs only the group it needs:
+The `dev` group includes both `test` and `lint`.
+
+For local development, `uv sync` and `uv run` use the existing lockfile and update it when needed
+to match `pyproject.toml`. New package releases alone do not trigger upgrades.
+CI uses `--locked` to fail if the lockfile is missing or outdated instead of updating it,
+and installs only the group it needs:
 
 ```bash
 # Framework and tests, without lint or pre-commit
@@ -257,22 +261,22 @@ uv sync --locked --only-group lint
 uv run --no-sync ruff check .
 
 # Restore the complete development environment
-uv sync --locked
+uv sync
 ```
 
 `uv sync` replaces the environment to match the selected groups. After a targeted sync, use
-`uv run --no-sync` to keep that selection; ordinary `uv run --locked` restores the default `dev` group.
+`uv run --no-sync` to keep that selection; ordinary `uv run` restores the default `dev` group.
 
 For intentional dependency changes, edit `pyproject.toml` (or use `uv add`), then run `uv lock`,
-`uv sync --locked`, and the checks. Commit `pyproject.toml` and `uv.lock` together.
+`uv sync`, and the checks. Commit `pyproject.toml` and `uv.lock` together.
 `uv lock --upgrade` refreshes dependencies within the declared constraints; exact direct pins must
 be changed explicitly before those packages can upgrade.
 
 Dependabot checks uv dependencies and GitHub Actions weekly. Minor and patch updates are grouped;
 major updates get separate pull requests. No updates are merged automatically. Other pre-commit hooks can be updated with
-`uv run --locked pre-commit autoupdate`.
+`uv run pre-commit autoupdate`.
 
-The former `requirements.txt` setup is replaced by `uv sync --locked`. A plain `pip install .`
+The former `requirements.txt` setup is replaced by `uv sync`. A plain `pip install .`
 installs framework dependencies only and does not reproduce the locked test environment.
 
 ## Contributing
