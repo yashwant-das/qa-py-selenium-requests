@@ -1,0 +1,9 @@
+INFO     src.api_clients.booking_service:booking_service.py:20 Creating booking with data: Gary
+INFO     src.base.api_base:api_base.py:80 API Request: POST https://restful-booker.herokuapp.com/booking
+INFO     src.base.api_base:api_base.py:92 API Response: 200 for POST https://restful-booker.herokuapp.com/booking
+INFO     src.api_clients.booking_service:booking_service.py:29 Requesting details for booking ID: 4901
+INFO     src.base.api_base:api_base.py:80 API Request: GET https://restful-booker.herokuapp.com/booking/4901
+INFO     src.base.api_base:api_base.py:92 API Response: 200 for GET https://restful-booker.herokuapp.com/booking/4901
+INFO     src.api_clients.booking_service:booking_service.py:43 Deleting booking ID: 4901
+INFO     src.base.api_base:api_base.py:80 API Request: DELETE https://restful-booker.herokuapp.com/booking/4901
+INFO     src.base.api_base:api_base.py:92 API Response: 201 for DELETE https://restful-booker.herokuapp.com/booking/4901

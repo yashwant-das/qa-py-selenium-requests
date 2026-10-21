@@ -1,0 +1,4 @@
+INFO     conftest:conftest.py:106 Allure environment properties written to reports/allure-results/environment.properties
+INFO     src.api_clients.booking_service:booking_service.py:48 Performing health check (ping)
+INFO     src.base.api_base:api_base.py:80 API Request: GET https://restful-booker.herokuapp.com/ping
+INFO     src.base.api_base:api_base.py:92 API Response: 201 for GET https://restful-booker.herokuapp.com/ping

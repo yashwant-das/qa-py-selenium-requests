@@ -1,0 +1,2 @@
+INFO     src.base.api_base:api_base.py:35 Attempting API authentication to https://example.invalid/auth
+ERROR    src.base.api_base:api_base.py:48 API Authentication request failed: server unavailable

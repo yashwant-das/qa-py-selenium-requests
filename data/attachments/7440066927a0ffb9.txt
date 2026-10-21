@@ -1,0 +1,3 @@
+WARNING  src.base.api_base:api_base.py:63 Endpoint /booking/1 requires auth, but no token. Attempting to authenticate...
+INFO     src.base.api_base:api_base.py:35 Attempting API authentication to https://example.invalid/auth
+ERROR    src.base.api_base:api_base.py:45 API Authentication failed: response did not contain a valid token.

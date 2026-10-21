@@ -1,0 +1,2 @@
+INFO     src.base.api_base:api_base.py:35 Attempting API authentication to https://restful-booker.herokuapp.com/auth
+INFO     src.base.api_base:api_base.py:43 API Authentication successful. Token received.

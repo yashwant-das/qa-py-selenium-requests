@@ -1,0 +1,2 @@
+INFO     project_fixtures:conftest.py:59 Initializing WebDriver: chrome, Headless: False
+INFO     project_fixtures:conftest.py:65 Quitting WebDriver.

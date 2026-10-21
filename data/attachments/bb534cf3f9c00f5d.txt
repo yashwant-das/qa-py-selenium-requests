@@ -1,0 +1,2 @@
+2026-10-21 16:10:48,512 - src.base.api_base - INFO - Attempting API authentication to https://example.invalid/auth (api_base.py:35)
+2026-10-21 16:10:48,512 - src.base.api_base - ERROR - API Authentication request failed: server unavailable (api_base.py:48)
