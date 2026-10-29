@@ -35,7 +35,7 @@ test = [
     "allure-pytest==2.16.2",
     "jsonschema==4.26.0",
 ]
-lint = ["ruff==0.17.1"]
+lint = ["ruff==0.17.2"]
 dev = [
     {include-group = "test"},
     {include-group = "lint"},
