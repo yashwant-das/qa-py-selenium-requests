@@ -8,7 +8,7 @@ license-files = ["LICENSE"]
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "selenium==4.51.0",
+    "selenium==4.52.0",
     "requests==2.34.2",
     "python-dotenv==1.2.4",
     "Faker==40.43.0",
@@ -29,13 +29,13 @@ build-backend = "setuptools.build_meta"
 
 [dependency-groups]
 test = [
-    "pytest==9.1.1",
+    "pytest==9.2.0",
     "pytest-html==4.2.0",
     "pytest-xdist==3.8.0",
     "allure-pytest==2.16.2",
     "jsonschema==4.26.0",
 ]
-lint = ["ruff==0.17.1"]
+lint = ["ruff==0.17.3"]
 dev = [
     {include-group = "test"},
     {include-group = "lint"},
